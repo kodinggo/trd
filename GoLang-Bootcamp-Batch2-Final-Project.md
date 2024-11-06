@@ -38,3 +38,4 @@ The registered users (member) can get notifications if there is a comment on the
 
 #### Architecture Diagram
 
+![medium-arch-diagram](https://github.com/user-attachments/assets/b85b6712-7c62-42bc-b553-f4ae7c252306)
