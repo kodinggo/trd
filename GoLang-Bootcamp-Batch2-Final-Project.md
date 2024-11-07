@@ -1,4 +1,4 @@
-# TRD: Online Publishing Platform
+# TRD: Online Publishing Platform (V1)
 
 ## Background
 
@@ -38,4 +38,128 @@ The registered users (member) can get notifications if there is a comment on the
 
 #### Architecture Diagram
 
-![medium-arch-diagram](https://github.com/user-attachments/assets/b85b6712-7c62-42bc-b553-f4ae7c252306)
+![medium-arch-diagram](https://github.com/user-attachments/assets/c31f69b1-0c87-4218-ace3-78e044278709)
+
+#### ERD
+
+![erd](https://github.com/user-attachments/assets/68ea97af-8ee0-4e51-b4d6-99f7cb3fc99b)
+
+
+#### Flow Diagram
+
+![flow](https://github.com/user-attachments/assets/d7116d19-c379-412b-93b4-244ae45f33ca)
+
+## API Contract
+
+#### Story Service
+
+- [GET] /v1/stories
+  ```
+  Query Params:
+  - category_ids=a,b,c
+  - search=keyword
+  - sort_by=<field>:<type> e.g. date:asc, az:desc
+  - cursor=xxxxxx
+
+  HTTP Status:
+  200 (OK)
+  
+  Header Response:
+  X-Cursor: xxxxxx
+  
+  Body Response:
+  {
+    "status": "success",
+    "data": [
+      {
+        "id": 1,
+        "title": "A Journey into Coding",
+        "content": "This is a story about coding adventures.",
+        "thumbnail_url": "https://example.com/thumbnail1.jpg",
+        "category": {
+          "id": 1,
+          "name": "Technology"
+        },
+        "author": {
+          "id": 1,
+          "fullname": "John Doe",
+          "sort_bio": "Developer",
+          "gender": "male",
+          "picture_url": "https://example.com/profile1.jpg",
+          "username": "johndoe",
+          "email": "johndoe@example.com"
+        },
+        "created_at": "2024-01-03T00:00:00Z",
+        "updated_at": "2024-01-04T00:00:00Z"
+      }
+    ]
+  }
+  ```
+- [GET] /v1/stories/{id}
+  ```
+  HTTP Status:
+  200 (OK)
+  
+  Body Response:
+  {
+    "status": "success",
+    "data": {
+        "id": 1,
+        "title": "A Journey into Coding",
+        "content": "This is a story about coding adventures.",
+        "thumbnail_url": "https://example.com/thumbnail1.jpg",
+        "category": {
+          "id": 1,
+          "name": "Technology"
+        },
+        "author": {
+          "id": 1,
+          "fullname": "John Doe",
+          "sort_bio": "Developer",
+          "gender": "male",
+          "picture_url": "https://example.com/profile1.jpg",
+          "username": "johndoe",
+          "email": "johndoe@example.com"
+        },
+        "comments": [
+          {
+            "id": 1,
+            "comment": "Great story!",
+            "author": {
+              "id": 1,
+              "fullname": "John Doe",
+              "sort_bio": "Developer",
+              "gender": "male",
+              "picture_url": "https://example.com/profile1.jpg",
+              "username": "johndoe",
+              "email": "johndoe@example.com"
+            },
+            "created_at": "2024-01-06T00:00:00Z",
+            "updated_at": "2024-01-07T00:00:00Z"
+          }
+        ],
+        "created_at": "2024-01-03T00:00:00Z",
+        "updated_at": "2024-01-04T00:00:00Z"
+    }
+  }
+  ```
+- [POST] /v1/stories
+  
+- [PUT] /v1/stories/{id}
+- [DELETE] /v1/stories/{id}
+
+#### Comment Service
+
+- [POST] /v1/comments
+- [PUT] /v1/comments/{id}
+- [DELETE] /v1/comments/{id}
+
+#### Account Service
+
+- [POST] /v1/auth/login
+- [POST] /v1/auth/register
+- [PUT] /v1/accounts/{id}
+
+#### Notification Service
+
+- [GET] /v1/notifications
