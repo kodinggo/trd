@@ -157,7 +157,34 @@ The registered users (member) can get notifications if there is a comment on the
 #### Account Service
 
 - [POST] /v1/auth/login
+
+  ```
+  Request Body
+  {
+    "email": "johndoe@gmail.com",
+    "password": "secret123"
+  }
+  Response Body
+  {
+    access_token: jwttoken
+  }
+  ```
+
 - [POST] /v1/auth/register
+
+  ```
+  Request Body:
+  {
+    "username": "johndoe",
+    "email": "johndoe@gmail.com",
+    "password": "secret123"
+  }
+  Response Body:
+  {
+    access_token: jwttoken
+  }
+  ```
+
 - [PUT] /v1/accounts/{id}
 
 #### Notification Service
