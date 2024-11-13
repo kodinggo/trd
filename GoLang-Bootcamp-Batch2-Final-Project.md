@@ -144,9 +144,106 @@ The registered users (member) can get notifications if there is a comment on the
   }
   ```
 - [POST] /v1/stories
-  
+  ```
+  HTTP Status:
+  201 (Created)
+
+  Body Request:
+  {
+        "title": "A Journey into Coding",
+        "content": "This is a story about coding adventures.",
+        "thumbnail_url": "https://example.com/thumbnail1.jpg",
+        "category_id": 1,
+        "author_id": 2
+  }
+  Body Response:
+  {
+    "status": "success",
+    "data": {
+        "id": 1,
+        "title": "A Journey into Coding",
+        "content": "This is a story about coding adventures.",
+        "thumbnail_url": "https://example.com/thumbnail1.jpg",
+        "category": {
+          "id": 1,
+          "name": "Technology"
+        },
+        "author": {
+          "id": 1,
+          "fullname": "John Doe",
+          "sort_bio": "Developer",
+          "gender": "male",
+          "picture_url": "https://example.com/profile1.jpg",
+          "username": "johndoe",
+          "email": "johndoe@example.com"
+        },
+        "comments": [],
+        "created_at": "2024-01-03T00:00:00Z",
+        "updated_at": "2024-01-04T00:00:00Z"
+    }
+  }
+  ```
 - [PUT] /v1/stories/{id}
+  ```
+  HTTP Status:
+  200 (OK)
+
+  Body Request:
+  {
+        "title": "A Journey into Coding",
+        "content": "This is a story about coding adventures.",
+        "thumbnail_url": "https://example.com/thumbnail1.jpg",
+        "category_id": 1,
+        "author_id": 2
+  }
+  Body Response:
+  {
+    "status": "success",
+    "data": {
+        "id": 1,
+        "title": "A Journey into Coding",
+        "content": "This is a story about coding adventures.",
+        "thumbnail_url": "https://example.com/thumbnail1.jpg",
+        "category": {
+          "id": 1,
+          "name": "Technology"
+        },
+        "author": {
+          "id": 1,
+          "fullname": "John Doe",
+          "sort_bio": "Developer",
+          "gender": "male",
+          "picture_url": "https://example.com/profile1.jpg",
+          "username": "johndoe",
+          "email": "johndoe@example.com"
+        },
+        "comments": [
+          {
+            "id": 1,
+            "comment": "Great story!",
+            "author": {
+              "id": 1,
+              "fullname": "John Doe",
+              "sort_bio": "Developer",
+              "gender": "male",
+              "picture_url": "https://example.com/profile1.jpg",
+              "username": "johndoe",
+              "email": "johndoe@example.com"
+            },
+            "created_at": "2024-01-06T00:00:00Z",
+            "updated_at": "2024-01-07T00:00:00Z"
+          }
+        ],
+        "created_at": "2024-01-03T00:00:00Z",
+        "updated_at": "2024-01-04T00:00:00Z"
+    }
+  }
+  ```
 - [DELETE] /v1/stories/{id}
+  ```
+  HTTP Status:
+  204 (NoContent)
+  ```
 
 #### Comment Service
 
