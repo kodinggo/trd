@@ -148,13 +148,15 @@ The registered users (member) can get notifications if there is a comment on the
   HTTP Status:
   201 (Created)
 
+  Header:
+  Authorization: Bearer token
+
   Body Request:
   {
         "title": "A Journey into Coding",
         "content": "This is a story about coding adventures.",
         "thumbnail_url": "https://example.com/thumbnail1.jpg",
-        "category_id": 1,
-        "author_id": 2
+        "category_id": 1
   }
   Body Response:
   {
@@ -165,17 +167,10 @@ The registered users (member) can get notifications if there is a comment on the
         "content": "This is a story about coding adventures.",
         "thumbnail_url": "https://example.com/thumbnail1.jpg",
         "category": {
-          "id": 1,
-          "name": "Technology"
+          "id": 1
         },
         "author": {
-          "id": 1,
-          "fullname": "John Doe",
-          "sort_bio": "Developer",
-          "gender": "male",
-          "picture_url": "https://example.com/profile1.jpg",
-          "username": "johndoe",
-          "email": "johndoe@example.com"
+          "id": 1
         },
         "comments": [],
         "created_at": "2024-01-03T00:00:00Z",
@@ -187,14 +182,16 @@ The registered users (member) can get notifications if there is a comment on the
   ```
   HTTP Status:
   200 (OK)
+  
+  Header:
+  Authorization: Bearer token
 
   Body Request:
   {
         "title": "A Journey into Coding",
         "content": "This is a story about coding adventures.",
         "thumbnail_url": "https://example.com/thumbnail1.jpg",
-        "category_id": 1,
-        "author_id": 2
+        "category_id": 1
   }
   Body Response:
   {
@@ -205,35 +202,12 @@ The registered users (member) can get notifications if there is a comment on the
         "content": "This is a story about coding adventures.",
         "thumbnail_url": "https://example.com/thumbnail1.jpg",
         "category": {
-          "id": 1,
-          "name": "Technology"
+          "id": 1
         },
         "author": {
-          "id": 1,
-          "fullname": "John Doe",
-          "sort_bio": "Developer",
-          "gender": "male",
-          "picture_url": "https://example.com/profile1.jpg",
-          "username": "johndoe",
-          "email": "johndoe@example.com"
+          "id": 1
         },
-        "comments": [
-          {
-            "id": 1,
-            "comment": "Great story!",
-            "author": {
-              "id": 1,
-              "fullname": "John Doe",
-              "sort_bio": "Developer",
-              "gender": "male",
-              "picture_url": "https://example.com/profile1.jpg",
-              "username": "johndoe",
-              "email": "johndoe@example.com"
-            },
-            "created_at": "2024-01-06T00:00:00Z",
-            "updated_at": "2024-01-07T00:00:00Z"
-          }
-        ],
+        "comments": [],
         "created_at": "2024-01-03T00:00:00Z",
         "updated_at": "2024-01-04T00:00:00Z"
     }
@@ -242,14 +216,61 @@ The registered users (member) can get notifications if there is a comment on the
 - [DELETE] /v1/stories/{id}
   ```
   HTTP Status:
-  204 (NoContent)
+  204 (No Content)
   ```
 
 #### Comment Service
 
 - [POST] /v1/comments
+  ```
+  HTTP Status:
+  201 (Created)
+  
+  Header:
+  Authorization: Bearer token
+
+  Body Request
+  {
+    "story_id": 5,
+    "comment": "Great story!"
+  }
+  Body Response
+  {
+    "id": 1,
+    "comment": "Great story!",
+    "author": {
+      "id": 1
+    },
+    "created_at": "2024-01-06T00:00:00Z",
+    "updated_at": "2024-01-07T00:00:00Z"
+  }
+  ```
 - [PUT] /v1/comments/{id}
+  ```
+  HTTP Status:
+  200 (OK)
+  
+  Header:
+  Authorization: Bearer token
+  
+  Body Request
+  {
+    "story_id": 5,
+    "comment": "Great story!"
+  }
+  Body Response
+  {
+    "id": 1,
+    "comment": "Great story!",
+    "created_at": "2024-01-06T00:00:00Z",
+    "updated_at": "2024-01-07T00:00:00Z"
+  }
+  ```
 - [DELETE] /v1/comments/{id}
+  ```
+  HTTP Status:
+  204 (No Content)
+  ```
 
 #### Account Service
 
