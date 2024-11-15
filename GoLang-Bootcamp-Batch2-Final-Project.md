@@ -275,7 +275,6 @@ The registered users (member) can get notifications if there is a comment on the
 #### Account Service
 
 - [POST] /v1/auth/login
-
   ```
   Request Body
   {
@@ -287,9 +286,7 @@ The registered users (member) can get notifications if there is a comment on the
     access_token: jwttoken
   }
   ```
-
 - [POST] /v1/auth/register
-
   ```
   Request Body:
   {
@@ -302,8 +299,29 @@ The registered users (member) can get notifications if there is a comment on the
     access_token: jwttoken
   }
   ```
-
 - [PUT] /v1/accounts/{id}
+  ```
+  HTTP Status:
+  201 (Created)
+
+  Header:
+  Authorization: Baerer token
+  
+  Body Request
+  {
+    "fullname": "John Doe",
+    "sort_bio": "Developer",
+    "gender": "male",
+    "picture_url": "https://example.com/profile1.jpg"
+  }
+  Body Response
+  {
+    "fullname": "John Doe",
+    "sort_bio": "Developer",
+    "gender": "male",
+    "picture_url": "https://example.com/profile1.jpg"
+  }
+  ```
 
 #### Notification Service
 
